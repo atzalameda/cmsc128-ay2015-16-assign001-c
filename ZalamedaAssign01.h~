@@ -1,4 +1,7 @@
-void NumToWords(){
+#include<string.h>
+#include<stdio.h>
+
+void NumToWords(){ // function for converting number to words
 	int num, quotient, temp;
 	int skip = 0;
 	char *ones[] = { "", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}; 
@@ -73,5 +76,13 @@ void NumToWords(){
 		}
 	}
 	printf("\n\n");	
+}
+
+void WordsToNum(){ // function for converting number in word form to number
+	char number[100];
+	
+	printf("Enter a number in word form (zero to one million in LOWERCASE): "); // asks for input from the user
+	gets(number);
+	printf("INPUT: %s", number);
 }
 

@@ -6,7 +6,6 @@
 **************************************************/
 
 #include<stdio.h>
-#include<string.h>
 #include"ZalamedaAssign01.h"
 
 int main(){
@@ -24,6 +23,7 @@ int main(){
 				break;
 				
 			case 2: printf("\n\t WORDS TO NUMBER\n");
+					WordsToNum();
 				break;
 				
 			case 3: printf("\n\t WORDS TO CURRENCY\n");

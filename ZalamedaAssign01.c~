@@ -24,6 +24,7 @@ int main(){
 				break;
 				
 			case 2: printf("\n\t WORDS TO NUMBER\n");
+					WordsToNum();
 				break;
 				
 			case 3: printf("\n\t WORDS TO CURRENCY\n");
