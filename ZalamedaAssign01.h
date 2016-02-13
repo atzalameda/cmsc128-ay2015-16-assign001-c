@@ -1,6 +1,5 @@
 #include<string.h>
 #include<stdio.h>
-#include <stdlib.h>
 
 void NumToWords(){ // function for converting number to words
 	int num, quotient, temp;
@@ -81,22 +80,72 @@ void NumToWords(){ // function for converting number to words
 
 void WordsToNum(){ // function for converting number in word form to number
 	char number[100];
-	char *str;
-	char *convertNum[] = {};
-	int i = 0;
+	char *str, *temp;
+	int num = 0, total = 0;
+	int i = 0, tmp = 0;
+	int flag = 0, hundreds;
 	
-	/*getchar();
+	getchar();
 	printf("Enter a number in word form (zero to one million in LOWERCASE): "); // asks for input from the user
-	gets(number);
-	printf("INPUT: %s\n", number);
+	fgets(number, 100, stdin);
 	
-	str = strtok(number, " ");
-	while(str != NULL){
-		strcpy(convertNum[i++], str);
-		printf("%s\n", convertNum[i++]);
+	temp = strtok(number, "\n"); // removes the newline at the end of the string
+	
+	str = strtok(temp, " "); // splits the string by spaces
+	while(str != NULL){ // loop until str is not NULL
+		// for ones place
+		if(strcmp(str, "zero") == 0) num = 0;
+		else if(strcmp(str, "one") == 0) num = 1;
+		else if(strcmp(str, "two") == 0) num = 2;
+		else if(strcmp(str, "three") == 0) num = 3;
+		else if(strcmp(str, "four") == 0) num = 4;
+		else if(strcmp(str, "five") == 0) num = 5;
+		else if(strcmp(str, "six") == 0) num = 6;
+		else if(strcmp(str, "seven") == 0) num = 7;
+		else if(strcmp(str, "eight") == 0) num = 8;
+		else if(strcmp(str, "nine") == 0) num = 9;
+		// for -teens place
+		else if(strcmp(str, "ten") == 0) num = 10;
+		else if(strcmp(str, "eleven") == 0) num = 11;
+		else if(strcmp(str, "twelve") == 0) num = 12;
+		else if(strcmp(str, "thirteen") == 0) num = 13;
+		else if(strcmp(str, "fourteen") == 0) num = 14;
+		else if(strcmp(str, "fifteen") == 0) num = 15;
+		else if(strcmp(str, "sixteen") == 0) num = 16;
+		else if(strcmp(str, "seventeen") == 0) num = 17;
+		else if(strcmp(str, "eighteen") == 0) num = 18;
+		else if(strcmp(str, "nineteen") == 0) num = 19;
+		// for tens place
+		else if(strcmp(str, "twenty") == 0) num = 20;
+		else if(strcmp(str, "thirty") == 0) num = 30;
+		else if(strcmp(str, "forty") == 0) num = 40;
+		else if(strcmp(str, "fifty") == 0) num = 50;
+		else if(strcmp(str, "sixty") == 0) num = 60;
+		else if(strcmp(str, "seventy") == 0) num = 70;
+		else if(strcmp(str, "eighty") == 0) num = 80;
+		else if(strcmp(str, "ninety") == 0) num = 90;
+		// for hundreds
+		else if(strcmp(str, "hundred") == 0){
+			tmp = total; // copies the value of total
+			tmp = tmp - (tmp % 10); // removes the added ones
+			hundreds = (total % 10) * 100; // stores the multiplied hundreds
+			num = hundreds + tmp; // adds tmp(with no added one) and the hundred place
+			total = 0; // resets total
+		} else if(strcmp(str, "thousand") == 0){
+			tmp = total;
+			num = tmp * 1000;
+			total = 0;
+		} else if(strcmp(str, "million") == 0){
+			tmp = total;
+			num = tmp * 1000000 - total;
+			total = 0;
+		}
+		
+		total += num;
+		
 		str = strtok(NULL, " ");
-	}*/
-
+	}
+	printf("OUTPUT: %d\n", total);
 }
 
 void NumberDelimiter(){ // function for adding a single character delimiter to the  
