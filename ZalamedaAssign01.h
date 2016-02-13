@@ -1,5 +1,6 @@
 #include<string.h>
 #include<stdio.h>
+#include <stdlib.h>
 
 void NumToWords(){ // function for converting number to words
 	int num, quotient, temp;
@@ -80,7 +81,55 @@ void NumToWords(){ // function for converting number to words
 
 void WordsToNum(){ // function for converting number in word form to number
 	char number[100];
+	char *str;
+	char *convertNum[] = {};
+	int i = 0;
 	
+	/*getchar();
 	printf("Enter a number in word form (zero to one million in LOWERCASE): "); // asks for input from the user
+	gets(number);
+	printf("INPUT: %s\n", number);
+	
+	str = strtok(number, " ");
+	while(str != NULL){
+		strcpy(convertNum[i++], str);
+		printf("%s\n", convertNum[i++]);
+		str = strtok(NULL, " ");
+	}*/
+
+}
+
+void NumberDelimiter(){ // function for adding a single character delimiter to the  
+	char num[10], temp[10];
+	char delimiter, str;
+	int position;
+	int i, j, k, sizeNum;
+
+	printf("Enter a number (0 - 1,000,000 without commas): "); // asks for input from the user
+	scanf("%s", num);
+	getchar();
+	printf("Enter a single-character delimiter: "); // asks for the delimiter to be added to the string
+	scanf("%c", &delimiter);
+	printf("Enter the number of places for the delimiter: "); // asks the number of places to put the delimiter
+	scanf("%d", &position);
+	
+	sizeNum = strlen(num); // to store the size of the string
+	position = sizeNum - position;
+	k = position + 1; // holds the index of the array next to the place of the delimiter
+
+	strcpy(temp, num); // copies the string to another string
+	
+	for(i=position; i<sizeNum+1; i++){ // loop that starts with the position to be replaced
+		str = temp[i]; // temporarily copies the character
+		if(i == position){
+			num[i] = delimiter; // replaces the stored string with the delimiter
+		}
+		num[k] = str; // stores the character removed to the next position in the array
+		k++; // increments the index
+	}
+	
+	printf("OUTPUT: %s\n", num);
+	getchar();
+
 }
 

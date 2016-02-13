@@ -30,6 +30,7 @@ int main(){
 				break;
 				
 			case 4: printf("\n\t NUMBER DELIMITED\n");
+					NumberDelimiter();
 				break;
 				
 			case 5: printf("\n\t\tGOODBYE!\n\n");
