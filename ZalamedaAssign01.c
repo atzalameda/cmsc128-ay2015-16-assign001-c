@@ -12,24 +12,26 @@ int main(){
 	int choice;
 	
 	while(choice != 5){
-		printf("\n\t   NUMBER LIBRARY\n\n");
+		printf("\n|=========== NUMBER LIBRARY ===========|\n\n");
 		printf("\t[1] Number to Words\n\t[2] Words to Number\n\t[3] Words to Currency\n\t[4] Number Delimited\n\t[5] Exit\n");
-		printf("\tChoice: ");
+		printf("\n|======================================|\n");
+		printf("\tCHOICE: ");
 		scanf("%d", &choice);
 	
 		switch(choice){
-			case 1: printf("\n\t NUMBER TO WORDS\n");
+			case 1: printf("\n|========== NUMBER TO WORDS ===========|\n");
 					NumToWords();
 				break;
 				
-			case 2: printf("\n\t WORDS TO NUMBER\n");
+			case 2: printf("\n|========== WORDS TO NUMBER ===========|\n");
 					WordsToNum();
 				break;
 				
-			case 3: printf("\n\t WORDS TO CURRENCY\n");
+			case 3: printf("\n|========= WORDS TO CURRENCY ==========|\n");
+					WordsToCurrency();
 				break;
 				
-			case 4: printf("\n\t NUMBER DELIMITED\n");
+			case 4: printf("\n|========== NUMBER DELIMITED ==========|\n");
 					NumberDelimiter();
 				break;
 				

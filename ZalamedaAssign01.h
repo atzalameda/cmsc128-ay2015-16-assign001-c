@@ -13,11 +13,11 @@ void NumToWords(){ // function for converting number to words
 	scanf("%d", &num);
 	
 	if(num == 0){ // if the input is 0 then it will just print zero
-		printf("OUTPUT: zero");
-	} else if(num > 1000000){ // if the input exceeds 1,000,000 the it is invalid
+		printf("\nOUTPUT: zero");
+	} else if(num > 1000000){ // if the input exceeds 1,000,000 then it is invalid
 		printf("\n  INVALID INPUT! EXCEEDED MAX NUMBER! \n");
 	} else{
-		printf("OUTPUT: ");
+		printf("\nOUTPUT: ");
 		while(num != 0){ // loops until the input is greater than 0
 			if((num / 1000000) > 0){ // prints the MILLION place. 
 				quotient = num / 1000000;
@@ -75,7 +75,7 @@ void NumToWords(){ // function for converting number to words
 			}
 		}
 	}
-	printf("\n\n");	
+	printf("\n");	
 }
 
 void WordsToNum(){ // function for converting number in word form to number
@@ -132,27 +132,111 @@ void WordsToNum(){ // function for converting number in word form to number
 			num = hundreds + tmp; // adds tmp(with no added one) and the hundred place
 			total = 0; // resets total
 		} else if(strcmp(str, "thousand") == 0){
-			tmp = total;
-			num = tmp * 1000;
-			total = 0;
+			tmp = total; // copies the value of total
+			num = tmp * 1000; // multiply it by thousands
+			total = 0; // resets total
 		} else if(strcmp(str, "million") == 0){
-			tmp = total;
-			num = tmp * 1000000 - total;
-			total = 0;
+			tmp = total; // copies the value of total
+			num = tmp * 1000000 - total; // multiply it by million
 		}
 		
 		total += num;
+		if(total > 1000000){ // if the input exceeds 1,000,000 then it is invalid
+			printf("\n  INVALID INPUT! EXCEEDED MAX NUMBER! \n");
+			total = 0;
+			break;	
+		}
 		
 		str = strtok(NULL, " ");
 	}
-	printf("OUTPUT: %d\n", total);
+	printf("\n\tOUTPUT: %d\n", total);
+}
+
+void WordsToCurrency(){ // function for converting number in word form to number with currency
+	char number[100], currency[5];
+	char *str, *temp;
+	int num = 0, total = 0;
+	int i = 0, tmp = 0, hundreds;
+	
+	getchar();
+	printf("Enter a number in word form (zero to one million in LOWERCASE): "); // asks for input from the user
+	fgets(number, 100, stdin);
+	printf("Enter currency (JPY, PHP, USD): "); // asks for the currency from the user
+	scanf("%s", currency);
+	
+	printf("\n\tOUTPUT: ");
+	if(strcmp(currency, "JPY") == 0) printf("JPY ");
+	else if(strcmp(currency, "PHP") == 0) printf("PHP ");
+	else if(strcmp(currency, "USD") == 0) printf("USD ");
+	
+	temp = strtok(number, "\n"); // removes the newline at the end of the string
+	
+	str = strtok(temp, " "); // splits the string by spaces
+	while(str != NULL){ // loop until str is not NULL
+		// for ones place
+		if(strcmp(str, "zero") == 0) num = 0;
+		else if(strcmp(str, "one") == 0) num = 1;
+		else if(strcmp(str, "two") == 0) num = 2;
+		else if(strcmp(str, "three") == 0) num = 3;
+		else if(strcmp(str, "four") == 0) num = 4;
+		else if(strcmp(str, "five") == 0) num = 5;
+		else if(strcmp(str, "six") == 0) num = 6;
+		else if(strcmp(str, "seven") == 0) num = 7;
+		else if(strcmp(str, "eight") == 0) num = 8;
+		else if(strcmp(str, "nine") == 0) num = 9;
+		// for -teens place
+		else if(strcmp(str, "ten") == 0) num = 10;
+		else if(strcmp(str, "eleven") == 0) num = 11;
+		else if(strcmp(str, "twelve") == 0) num = 12;
+		else if(strcmp(str, "thirteen") == 0) num = 13;
+		else if(strcmp(str, "fourteen") == 0) num = 14;
+		else if(strcmp(str, "fifteen") == 0) num = 15;
+		else if(strcmp(str, "sixteen") == 0) num = 16;
+		else if(strcmp(str, "seventeen") == 0) num = 17;
+		else if(strcmp(str, "eighteen") == 0) num = 18;
+		else if(strcmp(str, "nineteen") == 0) num = 19;
+		// for tens place
+		else if(strcmp(str, "twenty") == 0) num = 20;
+		else if(strcmp(str, "thirty") == 0) num = 30;
+		else if(strcmp(str, "forty") == 0) num = 40;
+		else if(strcmp(str, "fifty") == 0) num = 50;
+		else if(strcmp(str, "sixty") == 0) num = 60;
+		else if(strcmp(str, "seventy") == 0) num = 70;
+		else if(strcmp(str, "eighty") == 0) num = 80;
+		else if(strcmp(str, "ninety") == 0) num = 90;
+		// for hundreds
+		else if(strcmp(str, "hundred") == 0){
+			tmp = total; // copies the value of total
+			tmp = tmp - (tmp % 10); // removes the added ones
+			hundreds = (total % 10) * 100; // stores the multiplied hundreds
+			num = hundreds + tmp; // adds tmp(with no added one) and the hundred place
+			total = 0; // resets total
+		} else if(strcmp(str, "thousand") == 0){
+			tmp = total; // copies the value of total
+			num = tmp * 1000; // multiply it by thousands
+			total = 0; // resets total
+		} else if(strcmp(str, "million") == 0){
+			tmp = total; // // copies the value of total
+			num = tmp * 1000000 - total; // multiply it by million
+		}
+		
+		total += num;
+		if(total > 1000000){ // if the input exceeds 1,000,000 then it is invalid
+			printf("\n  INVALID INPUT! EXCEEDED MAX NUMBER! \n");
+			total = 0;
+			break;	
+		}
+		
+		str = strtok(NULL, " ");
+	}
+	printf("%d\n", total);
 }
 
 void NumberDelimiter(){ // function for adding a single character delimiter to the  
 	char num[10], temp[10];
 	char delimiter, str;
 	int position;
-	int i, j, k, sizeNum;
+	int i, k, sizeNum;
 
 	printf("Enter a number (0 - 1,000,000 without commas): "); // asks for input from the user
 	scanf("%s", num);
@@ -177,7 +261,7 @@ void NumberDelimiter(){ // function for adding a single character delimiter to t
 		k++; // increments the index
 	}
 	
-	printf("OUTPUT: %s\n", num);
+	printf("\n\tOUTPUT: %s\n", num);
 	getchar();
 
 }
