@@ -30,7 +30,7 @@ void NumToWords(){ // function for converting number to words
 				num = num % 100000;
 				if(num == 0) printf("%s hundred thousand ", ones[quotient]);
 				else if ((num/10000) == 0 && ((num%10000)/1000) == 0) printf("%s hundred thousand ", ones[quotient]);
-				else printf("%s hundrend ", ones[quotient]);
+				else printf("%s hundred ", ones[quotient]);
 			}
 			
 			if((num / 10000) > 0){ // prints the TEN THOUSAND place
